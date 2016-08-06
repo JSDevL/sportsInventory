@@ -100,7 +100,7 @@
                                 <div class="panel-body">
 
                                     <!-- form to add invoice or disposal statement -->
-                                    <transaction-form year="{{year}}" item-key="{{itemKey}}" item-name="{{itemList[itemKey].name}}" add-Inv="addInvoice(inv,yr,itKey)" add-Disp="addDisposal(disp,yr,itKey)" print-div="printDiv( d,t )"></transaction-form>
+                                    <transaction-form year="{{year}}" item-key="{{itemKey}}" item-name="{{itemList[itemKey].name}}" add-Inv="addInvoice(inv,yr,itKey)" add-Disp="addDisposal(disp,yr,itKey)" print-div="printDiv( d,t )" max-disposal="itemList[itemKey].balance"></transaction-form>
                                     
                                     <div class="accordian-contents">
                                         <transaction-details ng-repeat="trans in transactions[itemKey].years[year]" transaction="trans"></transaction-details>
