@@ -1,0 +1,102 @@
+<div>
+    <!-- Button trigger modal for new invoice-->
+    <button style="margin: 0px 0px 10px 0px" type="button" class="btn btn-success" data-toggle="modal" data-target="#addInvoice-{{itemKey}}-{{year}}">
+        Add Invoice
+    </button>
+    <!-- Button trigger modal for new disposal-->
+    <button style="margin: 0px 0px 10px 0px" type="button" class="btn btn-warning" data-toggle="modal" data-target="#addDisposal-{{itemKey}}-{{year}}">
+        Add Disposal Statement
+    </button>
+    <!-- print button -->
+    <button style="margin: 0px 0px 10px 0px" class="btn" ng-click="printDiv( { d:itemKey+year+' .accordian-contents', t:itemName+' stock for '+year})">Print {{year}} Stock</button>]
+
+    <div class="modal fade" id="addInvoice-{{itemKey}}-{{year}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Add Invoice for {{year}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="newInvoice" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Date </label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="invoiceDate" ng-model="invoice.date" min="{{year}}-01-01" max="{{year}}-12-31" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Invoice No. </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="invoiceNumber" ng-model="invoice.number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Source Of Supply </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="invoiceSource" ng-model="invoice.source" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quantity </label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="invoiceQuantity" ng-model="invoice.quantity" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Rate </label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="invoiceRate" ng-model="invoice.rate" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Amount (₹)</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{invoice.amount=invoice.rate*invoice.quantity}}" disabled>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addInv( {inv:invoice, yr:year, itKey:itemKey} )" ng-disabled="newInvoice.invoiceDate.$invalid || newInvoice.invoiceNumber.$invalid || newInvoice.invoiceSource.$invalid || newInvoice.invoiceQuantity.$invalid || newInvoice.invoiceRate.$invalid">Add Invoice</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addDisposal-{{itemKey}}-{{year}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Add Disposal for {{year}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="newDisposal" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Date </label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="displosalDate" ng-model="disposal.date" min="{{year}}-01-01" max="{{year}}-12-31" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quantity </label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="displosalQuantity" ng-model="disposal.quantity" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Used for </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="displosalComment" ng-model="disposal.comment" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addDisp( {disp:disposal, yr:year, itKey:itemKey} )" ng-disabled="newDisposal.displosalDate.$invalid || newDisposal.displosalQuantity.$invalid || newDisposal.displosalComment.$invalid ">Add Disposal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
