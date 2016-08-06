@@ -159,8 +159,8 @@ invApp.controller( "ledgerCtrl", function( $scope, DBService, $timeout, $routePa
 
 invApp.controller( "loginCtrl", function( $scope, $cookies, $location ){
     
-    if( $cookies.get('isLoggedIn') != 'true' )
-        $location.path('/stocks');
+    if( $cookies.get('isLoggedIn') == 'true' )
+        $location.path('/stock/');
     
     $scope.auth = function( pass ){
         if( pass == "nice" ){
