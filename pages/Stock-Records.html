@@ -1,0 +1,125 @@
+<div ng-controller="mainCtrl">
+        
+    <!-- floating message -->
+    <div id="floating-message" class="bg-primary" ng-if="floatingMsg.isVisible">
+        <div ng-if="!floatingMsg.error">
+            <img src='images/loading.gif'>
+        </div>
+        <div ng-if="floatingMsg.error">
+            <img src='images/loading.gif'>
+            <h3>Internet is not connected</h3>
+        </div>
+    </div>
+	
+	<!-- LogOut btn -->
+	<div style="float:right">
+		<button class="btn btn-danger" ng-click="deAuth()">Sign Out</button>
+	</div>
+
+    <h1>Stock Records</h1>
+    
+    <a href="#/ledger">Go to Day Records</a>
+
+    <!-- form to add item -->
+    <form name="newItem" class="inline-form" style="margin: 0px 0px 10px 0px" novalidate>
+        <input type="text" ng-model="newItemName" name="newItemName" required>
+        <button type="button" class="btn btn-primary" ng-click="addItem( newItemName )" ng-disabled="newItem.newItemName.$invalid">Add item</button>
+        <span ng-show="newItem.newItemName.$invalid && newItem.newItemName.$touched">Item Name connot be blank</span>
+    </form>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+        <!-- header for items -->
+        <table class="table table-bordered panel panel-default for-items">
+            <tr>
+                <th>S.No.</th>
+                <th>Name</th>
+            </tr>
+        </table>
+
+        <!-- accordian for every item -->
+        <div ng-repeat="(itemKey,value) in itemList" class="panel panel-primary item-containers">
+
+            <!-- accordian link for every item -->
+            <div class="panel-heading" role="tab">
+                <a style="color:white" role="button" data-toggle="collapse" data-target="#{{itemKey}}" aria-expanded="false" aria-controls="collapseOne">
+                    <!-- item heading -->
+                    <table class="table table-bordered for-items">
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{itemList[itemKey].name}}</td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+
+            <!-- accordian body for every item -->
+            <div id="{{itemKey}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+
+                    <!-- form to add year to an item -->
+                    <form name="newYear" class="inline-form" style="margin: 0px 0px 10px 0px">
+                        <input name="yearString" type="number" ng-model="newYear.string" placeholder="Year" ng-min="1990" ng-max="2050" required>
+                        <input name="yearOpeningBal" type="number" ng-model="newYear.openingBal" placeholder="Opening Balance" required>
+                        <button type="button" class="btn btn-default" ng-click="addYear(itemKey, newYear.string, newYear.openingBal)" ng-disabled="newYear.yearString.$invalid || newYear.yearOpeningBal.$invalid">Add year</button>
+                        
+                        <!-- print button -->
+                        <button class="btn" ng-click="printDiv( itemKey + ' .accordian-contents', 'Yearly Stock for ' + itemList[itemKey].name )">Print yearly Stock for {{itemList[itemKey].name}}</button>
+                        
+                        <span ng-show="newYear.yearString.$invalid && newYear.yearString.$touched">Enter year between 1990 and 2050</span>
+                    </form>
+                    
+                    <div class="accordian-contents">
+                        <!-- header for years -->
+                        <table class="table table-bordered panel panel-default for-years">
+                            <tr>
+                                <th>Year</th>
+                                <th>Opening Balance</th>
+                                <th>Purchased</th>
+                                <th>Disposal</th>
+                                <th>Balance</th>
+                            </tr>
+                        </table>
+
+                        <!-- accordian for every year -->
+                        <div ng-repeat="(year,value) in itemList[itemKey].years" class="panel panel-default item-containers">
+
+                            <!-- accordian link for every year -->
+                            <div class="panel-heading" role="tab">
+                                <a role="button" data-toggle="collapse" data-target="#{{itemKey+year}}" aria-expanded="false" aria-controls="collapseOne">
+                                    <!-- year heading -->
+                                    <table class="table table-bordered for-years">
+                                        <tr>
+                                            <td>{{year}}</td>
+                                            <td>{{itemList[itemKey].years[year].openingBal}}</td>
+                                            <td>{{itemList[itemKey].years[year].purchased}}</td>
+                                            <td>{{itemList[itemKey].years[year].disposal}}</td>
+                                            <td>{{itemList[itemKey].years[year].balance}}</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </div>
+
+                            <!-- accordian body for every year -->
+                            <div id="{{itemKey+year}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+                                    <!-- form to add invoice or disposal statement -->
+                                    <transaction-form year="{{year}}" item-key="{{itemKey}}" item-name="{{itemList[itemKey].name}}" add-Inv="addInvoice(inv,yr,itKey)" add-Disp="addDisposal(disp,yr,itKey)" print-div="printDiv( d,t )" max-disposal="{{itemList[itemKey].balance}}"></transaction-form>
+                                    
+                                    <div class="accordian-contents">
+                                        <transaction-details ng-repeat="trans in transactions[itemKey].years[year]" transaction="trans"></transaction-details>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

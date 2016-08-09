@@ -1,0 +1,63 @@
+<div ng-controller="ledgerCtrl">
+    
+    <!-- floating message -->
+    <div id="floating-message" class="bg-primary" ng-if="floatingMsg.isVisible">
+        <div ng-if="!floatingMsg.error">
+            <img src='images/loading.gif'>
+        </div>
+        <div ng-if="floatingMsg.error">
+            <img src='images/loading.gif'>
+            <h3>Internet is not connected</h3>
+        </div>
+    </div>
+
+    <h1>Day Book</h1>
+    
+    <a href="#/stock">Go to Stock Records</a>
+
+    <!-- accordian for every year -->
+    <div ng-repeat="(year,value) in yearList" class="panel panel-default item-containers">
+
+        <!-- accordian link for every year -->
+        <div class="panel-heading" role="tab">
+            <a role="button" data-toggle="collapse" data-target="#{{year}}" aria-expanded="true" aria-controls="collapseOne">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>{{year}}</td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+
+        <!-- accordian body for every year -->
+        <div id="{{year}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            
+            <!-- print button -->
+            <button style="margin:15px 0 0 15px;" class="btn" ng-click="printDiv( year+' table', 'Day book for year '+year )">Print day book for {{year}}</button>
+            
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Date</th>
+                        <th>Invoice Number</th>
+                        <th>Item Name</th>
+                        <th>Seller Source</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr ng-repeat="invoice in yearList[year]" ng-class="{'bg-success':param==invoice.dateString}">
+                        <td>{{invoice.dateString}}</td>
+                        <td>{{invoice.number}}</td>
+                        <td>{{invoice.itemName}}</td>
+                        <td>{{invoice.source}}</td>
+                        <td>{{invoice.quantity}}</td>
+                        <td>{{invoice.rate}}</td>
+                        <td>{{invoice.amount}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

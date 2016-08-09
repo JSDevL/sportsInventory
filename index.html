@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="invApp">
+    
+    <head>
+        <title>Inventory Records for Sports Club</title>
+        
+        <!--meta for mobile users, no zoom capabilities-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        
+        <!--All vendor CSS files go here-->
+        <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/css/bootstrap-theme.min.css">
+        
+        <!--All custom CSS files go here-->
+        <link rel="stylesheet" href="css/main.css">
+        
+        <!--All vendor JS files go here-->
+        <script type="text/javascript" src="vendor/jquery.js"></script>
+        <script type="text/javascript" src="vendor/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="vendor/angular.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-route.js"></script>
+        <script type="text/javascript" src="vendor/angular-cookies.js"></script>
+        <script type="text/javascript" src="vendor/firebase.js"></script>
+        
+        <script type="text/javascript" src="vendor/jQuery.print.js"></script>
+        
+        <!--All custom JS files go here-->
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
+    </head>
+    
+    <body class="container-fluid">
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view></div>
+    </body>
+    
+</html>

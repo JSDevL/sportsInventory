@@ -1,0 +1,78 @@
+table.for-items tr td:nth-child(1), table.for-items tr th:nth-child(1){
+    width : 10%;
+}
+
+table.for-items tr td:nth-child(2), table.for-items tr th:nth-child(2){
+    width : 90%;
+}
+
+table.for-years tr td:nth-child(1), table.for-years tr th:nth-child(1){
+    width : 20%;
+}
+
+table.for-years tr td:nth-child(2), table.for-years tr th:nth-child(2){
+    width : 20%;
+}
+
+table.for-years tr td:nth-child(3), table.for-years tr th:nth-child(3){
+    width : 20%;
+}
+
+table.for-years tr td:nth-child(4), table.for-years tr th:nth-child(4){
+    width : 20%;
+}
+
+table.for-years tr td:nth-child(5), table.for-years tr th:nth-child(5){
+    width : 20%;
+}
+
+.item-containers table{
+    margin : 0px;
+}
+
+.item-containers .panel-heading{
+    padding : 0px;
+}
+
+.item-detail-heading{
+    margin : 25px 0 5px
+}
+
+.item-detail-heading h3, .item-detail-heading h6{
+    display : inline;
+    margin : 0;
+    padding : 5px;
+    vertical-align : middle;
+}
+
+.modal form input{
+    margin : 5px 0px;
+}
+
+#floating-message{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#floating-message > div{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+#login{
+    display: block;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

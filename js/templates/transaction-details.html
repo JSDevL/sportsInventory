@@ -1,0 +1,38 @@
+<div >
+    <div ng-if="transaction.type=='invoice'">
+        <h2>{{transaction.dateString}}</h2>
+        <h4 class="text-success"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> Invoice -
+            <a href="#/ledger/{{transaction.dateString}}">go to Day Book</a>
+        </h4>
+        <table class="table table-bordered panel panel-default">
+            <tr>
+                <th>Invoice number</th>
+                <th>Supply Source</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>{{transaction.number}}</td>
+                <td>{{transaction.source}}</td>
+                <td>{{transaction.quantity}}</td>
+                <td>{{transaction.rate}}</td>
+                <td>{{transaction.amount}}</td>
+            </tr>
+        </table>
+    </div>
+    <div ng-if="transaction.type=='disposal'">
+        <h2>{{transaction.dateString}}</h2>
+        <h4 class="text-warning"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Disposal</h4>
+        <table class="table table-bordered panel panel-default">
+            <tr>
+                <th>Quantity</th>
+                <th>Used for</th>
+            </tr>
+            <tr>
+                <td>{{transaction.quantity}}</td>
+                <td>{{transaction.comment}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
