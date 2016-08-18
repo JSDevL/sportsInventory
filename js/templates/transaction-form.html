@@ -8,7 +8,7 @@
         Add Disposal Statement
     </button>
     <!-- print button -->
-    <button style="margin: 0px 0px 10px 0px" class="btn" ng-click="printDiv( { d:itemKey+year+' .accordian-contents', t:itemName+' stock for '+year})">Print {{year}} Stock</button>]
+    <button style="margin: 0px 0px 10px 0px" class="btn" ng-click="printDiv( { d:itemKey+year+' .accordian-contents', t:itemName+' stock for '+year})">Print {{year}} Stock</button>
 
     <div class="modal fade" id="addInvoice-{{itemKey}}-{{year}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Quantity </label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="invoiceQuantity" ng-model="invoice.quantity" required>
+                                <input type="number" class="form-control" name="invoiceQuantity" min="1" ng-model="invoice.quantity" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Quantity </label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="displosalQuantity" ng-model="disposal.quantity" required>
+                                <input placeholder="max {{maxDisposal}}" type="number" class="form-control" name="displosalQuantity" min="1" max="{{maxDisposal}}" ng-model="disposal.quantity" required>
                             </div>
                         </div>
                         <div class="form-group">

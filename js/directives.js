@@ -9,7 +9,8 @@ invApp.directive('transactionForm',function(){
             addInv : "&",
             addDisp : "&",
             printDiv : "&",
-            itemName : "@"
+            itemName : "@",
+            maxDisposal : "@"
         }
     };
 });

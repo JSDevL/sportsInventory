@@ -3,6 +3,11 @@ invApp.controller( "mainCtrl", function( $scope, DBService, $timeout, $cookies, 
     
     if( $cookies.get('isLoggedIn') != 'true' )
         $location.path('/');
+	
+	$scope.deAuth = function(){
+            $cookies.remove('isLoggedIn');
+            $location.path('/');
+    }
     
     $scope.printDiv = function( divId, divTitle ){
         console.log(divId);
